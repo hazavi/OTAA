@@ -1,0 +1,58 @@
+#include <TheThingsNetwork.h>
+
+// Set your AppEUI and AppKey
+const char *appEui = "0004A30B001C5968"; // Replace with your AppEUI
+const char *appKey = "f6d713263ef80c76fbe39bb34438e8d4"; // Replace with your AppKey
+
+#define loraSerial Serial1
+#define debugSerial Serial
+
+// Replace TTN_FP_EU868 with TTN_FP_US915 if you're in the US
+#define freqPlan TTN_FP_EU868
+
+TheThingsNetwork ttn(loraSerial, debugSerial, freqPlan);
+
+void setup() {
+  // Initialize serial communication
+  loraSerial.begin(57600);
+  debugSerial.begin(9600);
+
+  // Wait for Serial Monitor
+  while (!debugSerial && millis() < 10000)
+    ;
+
+  // Initialize the built-in LED pin as an output
+  pinMode(LED_BUILTIN, OUTPUT);
+
+  // Show device status
+  debugSerial.println("-- STATUS");
+  ttn.showStatus();
+
+  // Join The Things Network
+  debugSerial.println("-- JOIN");
+  ttn.join(appEui, appKey);
+
+  debugSerial.println("Setup complete");
+}
+
+void loop() {
+  // Turn the LED on
+  digitalWrite(LED_BUILTIN, HIGH);
+  debugSerial.println("LED ON");
+  
+  // Send "1" to the gateway
+  byte payloadOn[1] = {1};
+  ttn.sendBytes(payloadOn, sizeof(payloadOn));
+  
+  delay(500); // Wait for 500 milliseconds
+
+  // Turn the LED off
+  digitalWrite(LED_BUILTIN, LOW);
+  debugSerial.println("LED OFF");
+  
+  // Send "0" to the gateway
+  byte payloadOff[1] = {0};
+  ttn.sendBytes(payloadOff, sizeof(payloadOff));
+  
+  delay(500); // Wait for 500 milliseconds
+}
