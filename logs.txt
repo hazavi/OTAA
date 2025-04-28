@@ -1,0 +1,34 @@
+Response is not OK: no_free_ch
+Send command failed
+LED OFF
+Sending: mac tx uncnf 1 00
+Response is not OK: no_free_ch
+Send command failed
+LED ON
+Sending: mac tx uncnf 1 01
+Response is not OK: no_free_ch
+Send command failed
+LED OFF
+Sending: mac tx uncnf 1 00
+Response is not OK: no_free_ch
+Send command failed
+LED ON
+Sending: mac tx uncnf 1 01
+Response is not OK: no_free_ch
+Send command failed
+LED OFF
+Sending: mac tx uncnf 1 00
+Response is not OK: no_free_ch
+Send command failed
+LED ON
+Sending: mac tx uncnf 1 01
+Response is not OK: no_free_ch
+Send command failed
+LED OFF
+Sending: mac tx uncnf 1 00
+Response is not OK: no_free_ch
+Send command failed
+LED ON
+Sending: mac tx uncnf 1 01
+Response is not OK: no_free_ch
+Send command failed
